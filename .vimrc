@@ -12,14 +12,22 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-" Command-T plugin
-Plugin 'wincent/command-t'
+" ctrlp plugin
+Plugin 'ctrlpvim/ctrlp.vim'
 " Solarized Color Scheme
 Plugin 'altercation/vim-colors-solarized'
 " Surround plugin
 Plugin 'tpope/vim-surround'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
+" AG Plugin
+Plugin 'rking/ag.vim'
+" Completion plugin
+Plugin 'Shougo/deoplete.nvim'
+" Ruby completion
+Plugin 'fishbullet/deoplete-ruby'
+" Haskell plugin
+Plugin 'neovimhaskell/haskell-vim'
 
 call vundle#end()
 
@@ -27,6 +35,8 @@ call vundle#end()
 " Personal
 "----------------------------------------------------------------
 filetype plugin indent on
+au BufNewFile,BufRead *.mi set filetype=perl
+au BufNewFile,BufRead *.m set filetype=perl
 
 " enhances the % command to move between more than just matching [{( depending
 " on the filetype
@@ -41,7 +51,6 @@ set expandtab
 
 syntax enable
 set background=dark
-let g:solarized_termcolors=256
 colorscheme solarized
 
 set encoding=utf-8 
@@ -73,8 +82,20 @@ nnoremap <LEADER># :call ToggleLineNumbers()<CR>
 
 set hidden
 
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'rw'
+
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=50
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ag
+let g:ag_prg="/usr/local/bin/ag --vimgrep"
+let g:ag_working_path_mode="r"
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+
 

@@ -1,8 +1,7 @@
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home";
-export ANDROID_SDK="/Applications/Developer/android-sdk-macosx-22.3";
-export ANDROID_SDK_KITKAT=$ANDROID_SDK;
+export SCALA_HOME="/usr/local/opt/scala/idea";
 
-export PATH="$PATH:/apollo/env/SDETools/bin:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$HOME/Library/Haskell/bin";
+export PATH="$PATH:/apollo/env/SDETools/bin:$HOME/Library/Haskell/bin";
 
 alias sshdesk="ssh -X baylork.aka.corp.amazon.com";
 alias odin-tunnel="ssh -fNL 2009:127.0.0.1:2009 baylork.aka.corp.amazon.com";
@@ -14,7 +13,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="pygmalion"
+ZSH_THEME="blinks"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

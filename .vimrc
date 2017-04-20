@@ -28,6 +28,12 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'fishbullet/deoplete-ruby'
 " Haskell plugin
 Plugin 'neovimhaskell/haskell-vim'
+" Vim airline
+Plugin 'vim-airline/vim-airline'
+" Scala syntax
+Plugin 'derekwyatt/vim-scala'
+" Idris Support
+Plugin 'idris-hackers/idris-vim'
 
 call vundle#end()
 

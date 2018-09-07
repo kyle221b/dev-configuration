@@ -104,4 +104,5 @@ let g:ag_working_path_mode="r"
 " deoplete
 let g:deoplete#enable_at_startup = 1
 
-
+" Crontab workaround
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes

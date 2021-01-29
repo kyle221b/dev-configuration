@@ -1,1 +1,0 @@
-/Users/kyle221b/.vimrc

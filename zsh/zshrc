@@ -1,0 +1,49 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Aliases
+alias vi=vim
+alias vim=nvim
+alias caski='brewi --cask'
+alias op-signin='eval $(op signin convoyinc)'
+alias awsokta-rw='awsokta prod-rw'
+
+# Completions
+compinit
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+
+# Common Env Vars
+export VISUAL=nvim
+
+# Functions
+function ws {
+ cd ~/workplace $1
+}
+
+function cws {
+ cd ~/workplace/convoy $1
+}
+
+function awsokta {
+  role='prod-ro'
+  if [[ -n "$1" ]] then
+    role=$1
+  fi
+  $(aws-okta -t 12h env $role)
+}
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /Users/kyle221b/.convoyrc

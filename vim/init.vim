@@ -1,8 +1,8 @@
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
-Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'itchyny/lightline.vim'
 Plug 'adelarsq/vim-matchit'
@@ -23,19 +23,16 @@ vnoremap . :norm.<CR>
 set relativenumber
 set hlsearch
 set incsearch
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " Theme
 let g:sonokai_style = 'shusia'
 colorscheme sonokai
-
-" Ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " FZF
-nmap <C-p> :FZF<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <C-f> :Rg<CR>

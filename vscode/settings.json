@@ -5,8 +5,6 @@
   "vim.vimrc.enable": true,
   "terminal.integrated.macOptionIsMeta": true,
   "jest.jestCommandLine": "node_modules/.bin/jest",
-  "launchdarkly.env": "development",
-  "launchdarkly.accessToken": "api-555b7463-c2a5-45ab-90ec-7e043a488d01",
   "files.autoSave": "afterDelay",
   "vim.smartRelativeLine": true,
   "editor.formatOnSave": true,

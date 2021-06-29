@@ -49,9 +49,8 @@ function awsokta {
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /Users/kyle221b/.convoyrc
 
-GIT_TOKEN=9ea45cbbc5f297260d4f2153edd1312f1df257d8
+source /Users/kyle221b/.convoyrc
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -67,4 +66,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+export KUBECONFIG=/Users/kyle221b/workplace/convoy/ops/terraform-categories/kubernetes/kubeconfig/cluster-config.kubeconfig
 

@@ -2,13 +2,15 @@ nvim_dir=$HOME/.config/nvim
 vscode_dir=$HOME/Library/Application\ Support/Code/User
 zsh_dir=$HOME
 zprezto_dir=$HOME/.zprezto/runcoms
+karabiner_dir=$HOME/.config/karabiner
 
 function ensure_correct_directory {
 	dir_contents=$(ls -a)
 	has_vim_dir=$(echo $dir_contents | grep vim)
 	has_vscode_dir=$(echo $dir_contents | grep vscode)
 	has_zsh_dir=$(echo $dir_contents | grep zsh)
-	if [[ -z $has_vim_dir || -z $has_vscode_dir || -z $has_zsh_dir ]]
+	has_karabiner_dir=$(echo $dir_contents | grep karabiner)
+	if [[ -z $has_vim_dir || -z $has_vscode_dir || -z $has_zsh_dir || -z $has_karabiner_dir ]]
 	then
 		echo "Must run install script from project root. Exiting."
 		exit 1
@@ -55,3 +57,6 @@ else
 	echo "Skipping zprezto config installation. No zprezto directory found at '$zprezto_dir'..."
 fi
 
+echo "Running karabiner setup..."
+rm -rf $karabiner_dir
+ln -s $cur_dir/karabiner $HOME/.config

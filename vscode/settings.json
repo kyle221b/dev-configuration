@@ -1,16 +1,14 @@
 {
   "workbench.colorTheme": "Sonokai Atlantis",
-  "vim.enableNeovim": true,
   "vim.sneak": true,
   "vim.vimrc.enable": true,
   "terminal.integrated.macOptionIsMeta": true,
-  "jest.jestCommandLine": "node_modules/.bin/jest",
+  "jest.jestCommandLine": "./node_modules/.bin/jest  --config ./test/service/unit/jest.config.js",
   "files.autoSave": "afterDelay",
   "vim.smartRelativeLine": true,
   "editor.formatOnSave": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "terminal.external.osxExec": "iTerm.app",
-  "terminal.explorerKind": "external",
   "cSpell.logLevel": "Warning",
   // "eslint.lintTask.enable": true,
   "eslint.packageManager": "yarn",
@@ -19,4 +17,18 @@
   },
   "javascript.suggest.paths": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "prettier.enable": false,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "vim.neovimUseConfigFile": true,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.explorerKind": "external",
+  "search.exclude": {
+    "": true,
+    "**/bower_components": false,
+    "**/node_modules": false
+  },
+  "jestrunner.jestPath": "node_modules/.bin/jest",
+  "debug.javascript.autoAttachFilter": "onlyWithFlag",
+  "editor.minimap.enabled": false
 }

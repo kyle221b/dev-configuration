@@ -10,6 +10,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'sainnhe/sonokai'
 Plug 'justinmk/vim-sneak'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()
 
 " General
@@ -36,3 +37,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " FZF
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
+
+" Markdown Preview
+nmap <C-m><C-p> <Plug>MarkdownPreviewToggle

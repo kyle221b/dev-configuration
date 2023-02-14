@@ -118,6 +118,16 @@
                     "simple_modifications": [
                         {
                             "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_control"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
                                 "key_code": "left_command"
                             },
                             "to": [
@@ -138,31 +148,11 @@
                         },
                         {
                             "from": {
-                                "key_code": "right_command"
+                                "key_code": "page_down"
                             },
                             "to": [
                                 {
-                                    "key_code": "right_option"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "right_option"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "right_command"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "caps_lock"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "left_control"
+                                    "consumer_key_code": "volume_decrement"
                                 }
                             ]
                         },
@@ -178,11 +168,21 @@
                         },
                         {
                             "from": {
-                                "key_code": "page_down"
+                                "key_code": "right_command"
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "volume_decrement"
+                                    "key_code": "right_option"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "right_command"
                                 }
                             ]
                         }

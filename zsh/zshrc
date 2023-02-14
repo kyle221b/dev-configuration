@@ -14,19 +14,15 @@ fi
 alias vi=vim
 alias vim=nvim
 alias caski='brewi --cask'
-alias op-signin='eval $(op signin convoyinc)'
-alias awsokta-rw='awsokta prod-rw'
-alias nvmops='nvm use v10.15.0'
 
 # Completions
 compinit
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-
 # Common Env Vars
 export VISUAL=nvim
+
+# ZSH config
+unsetopt correct
 
 # Functions
 function ws {
@@ -35,14 +31,6 @@ function ws {
 
 function cws {
  cd ~/workplace/convoy/$1
-}
-
-function awsokta {
-  role='prod-ro'
-  if [[ -n "$1" ]] then
-    role=$1
-  fi
-  $(aws-okta -t 12h env $role)
 }
 
 # export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
@@ -54,18 +42,31 @@ source /Users/kyle221b/.convoyrc
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
+        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export KUBECONFIG=/Users/kyle221b/workplace/convoy/ops/terraform-categories/kubernetes/kubeconfig/cluster-config.kubeconfig
+export KUBECONFIG=/Users/kyle221b/workplace/convoy/ops/terraform-categories/kubernetes/kubeconfig/cluster-config.kubeconfig:/Users/kyle221b/workplace/istio-1.11.2/tutorial-user-config.yaml
+source <(kubectl completion zsh)
+alias kube=kubectl
 
+# chalupa-mobile - Ruby
+eval "$(rbenv init -)"
+
+# chalupa-mobile - Android
+export ANDROID_SDK="${HOME}/Library/Android/sdk"
+export ANDROID_SDK_ROOT="${ANDROID_SDK}"
+export ANDROID_HOME="${ANDROID_SDK}"
+export PATH="${PATH}:${ANDROID_HOME}/emulator"
+export PATH="${PATH}:${ANDROID_HOME}/tools"
+export PATH="${PATH}:${ANDROID_HOME}/tools/bin"
+export PATH="${PATH}:${ANDROID_HOME}/platform-tools"

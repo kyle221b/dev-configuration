@@ -1,16 +1,12 @@
 nvim_dir=$HOME/.config/nvim
-vscode_dir=$HOME/Library/Application\ Support/Code/User
-zsh_dir=$HOME
 zprezto_dir=$HOME/.zprezto/runcoms
 karabiner_dir=$HOME/.config/karabiner
 
 function ensure_correct_directory {
 	dir_contents=$(ls -a)
 	has_vim_dir=$(echo $dir_contents | grep vim)
-	has_vscode_dir=$(echo $dir_contents | grep vscode)
-	has_zsh_dir=$(echo $dir_contents | grep zsh)
 	has_karabiner_dir=$(echo $dir_contents | grep karabiner)
-	if [[ -z $has_vim_dir || -z $has_vscode_dir || -z $has_zsh_dir || -z $has_karabiner_dir ]]
+	if [[ -z $has_vim_dir || -z $has_karabiner_dir ]]
 	then
 		echo "Must run install script from project root. Exiting."
 		exit 1
@@ -27,25 +23,6 @@ then
 	ln -s $cur_dir/vim/init.vim $nvim_dir/
 else
 	echo "Skipping neovim config installation. No neovim directory found at '$nvim_dir'..."
-fi
-
-if [[ -d $vscode_dir ]] 
-then
-	echo "Running vscode setup..."
-	rm -f $vscode_dir/keybindings.json $vscode_dir/settings.json
-	ln -s $cur_dir/vscode/keybindings.json "$vscode_dir/keybindings.json"
-	ln -s $cur_dir/vscode/settings.json "$vscode_dir/settings.json"
-else
-	echo "Skipping VS Code config installation. No VS Code directory found at '$vscode_dir'..."
-fi
-
-if [[ -f "$zsh_dir/.zshrc" ]] 
-then
-	echo "Running zsh setup..."
-	rm -f $zsh_dir/.zshrc
-	ln -s $cur_dir/zsh/zshrc $zsh_dir/.zshrc
-else
-	echo "Skipping zsh config installation. No existing .zshrc file found at '$zsh_dir'..."
 fi
 
 if [[ -d $zprezto_dir ]] 

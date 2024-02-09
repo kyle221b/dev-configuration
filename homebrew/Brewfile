@@ -27,8 +27,16 @@ cask "obsidian"
 cask "raycast"
 cask "reaper"
 cask "rectangle"
+cask "spotify"
 cask "todoist"
 cask "visual-studio-code"
+mas "Authenticator", id: 1538761576
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Sider", id: 6447783111
 vscode "andys8.jest-snippets"
 vscode "attilabuti.mustache-syntax-vscode"
 vscode "christian-kohler.path-intellisense"
@@ -45,6 +53,8 @@ vscode "mike-co.import-sorter"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode.vscode-typescript-tslint-plugin"
+vscode "ms-vsliveshare.vsliveshare"
+vscode "ms-vsliveshare.vsliveshare-audio"
 vscode "msjsdiag.debugger-for-chrome"
 vscode "Orta.vscode-jest"
 vscode "rangav.vscode-thunder-client"

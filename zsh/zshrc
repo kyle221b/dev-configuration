@@ -1,72 +1,107 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+source ~/.bash_profile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(starship init zsh)"
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# Brew autocompletions
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
-# Aliases
-alias vi=vim
+# aliases
 alias vim=nvim
-alias caski='brewi --cask'
+alias brewi="brew install"
+alias caski="brewi --cask"
+alias k="kubectl"
+alias kctx="kubectx"
+alias kns="kubens"
+alias ddt=dd-toolbox
+
+# Env
+export VISUAL=nvim
+export PAGER=bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BAT_PAGER="less -RF"
+export BAT_THEME="gruvbox-dark"
+
+export PATH=$PATH:/Applications/IntelliJ\ IDEA\ CE.app/Contents/MacOS
+
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# if the init script doesn't exist
+if ! zgenom saved; then
+  # specify plugins here
+  zgenom ohmyzsh
+
+  # plugins
+  zgenom ohmyzsh plugins/git
+  zgenom ohmyzsh plugins/sudo
+  zgenom ohmyzsh plugins/aliases
+  zgenom ohmyzsh plugins/brew
+  zgenom ohmyzsh plugins/docker
+  zgenom ohmyzsh plugins/fd
+  zgenom ohmyzsh plugins/ripgrep
+  zgenom ohmyzsh plugins/fzf
+  zgenom ohmyzsh plugins/zoxide
+  zgenom ohmyzsh plugins/terraform
+  zgenom ohmyzsh plugins/kubectl
+
+  zgenom load zsh-users/zsh-syntax-highlighting
+  zgenom load zsh-users/zsh-completions
+  zgenom load zsh-users/zsh-autosuggestions
+  zgenom load zsh-users/zsh-history-substring-search
+  zgenom load MichaelAquilina/zsh-you-should-use
+
+  # generate the init script from plugins above
+  zgenom save
+fi
 
 # Completions
 compinit
+source <(fnm completions)
+source <(ddt completion zsh)
+source <(kubectl completion zsh)
+source <(helm completion zsh)
 
-# Common Env Vars
-export VISUAL=nvim
+# fnm
+export PATH="/Users/kyle.baylor/Library/Application Support/fnm:$PATH"
+eval "`fnm env`"
 
-# ZSH config
-unsetopt correct
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
-# Functions
+function pws {
+  cd ~/Projects/personal/$1
+}
+
 function ws {
- cd ~/workplace/$1
+  cd ~/Projects/$1
 }
 
-function cws {
- cd ~/workplace/convoy/$1
+function ghcr {
+  ws && gh repo clone doordash/$1 && popd
 }
 
-# export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
+function tsh-login {
+  tsh kube ls | fzf | choose 0 | xargs tsh kube login
+}
 
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source /Users/kyle221b/.convoyrc
+function docker-login {
+  aws --region us-west-2 ecr get-login-password | docker login --username AWS --password-stdin 611706558220.dkr.ecr.us-west-2.amazonaws.com
+  aws --region us-west-2 ecr get-login-password | docker login --username AWS --password-stdin 839591177169.dkr.ecr.us-west-2.amazonaws.com
+}
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
-        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export KUBECONFIG=/Users/kyle221b/workplace/convoy/ops/terraform-categories/kubernetes/kubeconfig/cluster-config.kubeconfig:/Users/kyle221b/workplace/istio-1.11.2/tutorial-user-config.yaml
-source <(kubectl completion zsh)
-alias kube=kubectl
-
-# chalupa-mobile - Ruby
-eval "$(rbenv init -)"
-
-# chalupa-mobile - Android
-export ANDROID_SDK="${HOME}/Library/Android/sdk"
-export ANDROID_SDK_ROOT="${ANDROID_SDK}"
-export ANDROID_HOME="${ANDROID_SDK}"
-export PATH="${PATH}:${ANDROID_HOME}/emulator"
-export PATH="${PATH}:${ANDROID_HOME}/tools"
-export PATH="${PATH}:${ANDROID_HOME}/tools/bin"
-export PATH="${PATH}:${ANDROID_HOME}/platform-tools"
